@@ -11,11 +11,17 @@ Recursion is widely known concept in a
 functional programming design. 
 Each function's call allocate stack frame. 
 Therefore, we have limited by the size of stack 
-in a recursive calls.
+in a recursive calls. 
+A large recursive query can actually cause a stack overflow.
 
 A tail recursion is a recursive function where 
 the function calls itself at the end ("tail") 
 of the function in which no computation is done 
 after the return of recursive call.
+Basically Tail recursions are able to be optimized 
+into iteration.
+
+## Java support of tail recursion optimization
+
 
 
