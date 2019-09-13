@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.mg.funclist.FunctionalUtils.tail;
-import static ru.mg.tailrec.TailCalls.done;
+import static ru.mg.tailrec.TailCall.done;
 
 class TailCallTest {
 
