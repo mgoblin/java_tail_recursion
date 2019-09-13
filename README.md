@@ -22,6 +22,15 @@ Basically Tail recursions are able to be optimized
 into iteration.
 
 ## Java support of tail recursion optimization
+Some JVM based support tail recursion call optimization.
+Clojure have special recur function, in Scala @tailrec
+method annotation force optimization on compilation. 
 
+Java have not supported tail recursion call optimization.
+But it may be implemented at code level. This repository 
+contains example of implementation tail recursion call
+optimization.
+
+# Implementation details
 
 
