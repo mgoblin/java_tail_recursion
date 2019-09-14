@@ -61,7 +61,7 @@ return as a result deferred call in the form of a lambda.
 Also we need to have a trailing marker for recursion breakdown 
  and the method to sequentially call lambda until
 trailing marker.
-Sequential calling transform recursion to iteration.
+Sequential invoke all deferred calls should transform recursion to iteration.
 
 Length calculation may be rewrited as 
 ```
@@ -77,5 +77,7 @@ private <E> TailCall<Long> lengthLoopTailRec(Collection<E> list, long acc) {
    return lengthLoopTailRec(list, 0).invokeWhile(); //<-- start to sequentially calling deferred lambdas
 }
 ```
+
+## TailCall details
 
 
