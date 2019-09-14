@@ -63,4 +63,19 @@ Also we need to have a trailing marker for recursion breakdown
 trailing marker.
 Sequential calling transform recursion to iteration.
 
+Length calculation may be rewrited as 
+```
+private <E> TailCall<Long> lengthLoopTailRec(Collection<E> list, long acc) {
+   if (list.isEmpty()) {
+     return done(acc); //<-- done is recursion trailing marker
+   } else {
+     return () -> lengthLoopTailRec(tail(list), acc + 1); //<-- recursive deferred call as lambda 
+   }
+}
+
+private <E> long length(Collection<E> list) {
+   return lengthLoopTailRec(list, 0).invokeWhile(); //<-- start to sequentially calling deferred lambdas
+}
+```
+
 
