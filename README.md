@@ -32,5 +32,29 @@ contains example of implementation tail recursion call
 optimization.
 
 # Implementation details
+## Idea
+Сonsider the naive recursive implementation of the method 
+length.
+```
+private <E> Long lengthLoopNaive(Collection<E> list, long acc) {
+  if (list.isEmpty()) {
+    return acc;
+  } else {
+    return lengthLoopNaive(tail(list), acc + 1);
+  }
+}
+
+public <E> long lengthNaive(Collection<E> list) {
+  return lengthLoopNaive(list, 0);
+}
+```
+Algorithm is the fully correct, 
+but on long lists (more than 15 000 elements)
+calling lengthNaive throws StackOverflowException.
+
+The reason of StackOverflowException is immediate
+calling lengthLoopNaive leading to allocation of 
+stack frame.
+
 
 
