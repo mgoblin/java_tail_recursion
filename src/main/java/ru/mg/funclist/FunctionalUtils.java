@@ -1,30 +1,26 @@
 package ru.mg.funclist;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
-public class FunctionalUtils {
+public interface FunctionalUtils {
 
-    private FunctionalUtils() {
-    }
-
-    public static  <E> E head(Collection<E> collection) {
+    static  <E> E head(Collection<E> collection) {
         if (Objects.requireNonNull(collection).isEmpty()) {
             throw new NoSuchElementException("empty doesn't have head");
         }
         return collection.iterator().next();
     }
 
-    public static <E> Collection<E> tail(Collection<E> list) {
-        if (Objects.requireNonNull(list).isEmpty()) {
+    static <E> Collection<E> tail(Collection<E> collection) {
+        if (Objects.requireNonNull(collection).isEmpty()) {
             throw new NoSuchElementException("empty doesn't have tail");
-        } else if (list.size() == 1){
-            return new ArrayList<>();
         } else {
-            ArrayList<E> result = new ArrayList<>(list);
+            ArrayList<E> result = new ArrayList<>(collection);
             result.remove(0);
             return result;
         }
-
-
     }
 }
