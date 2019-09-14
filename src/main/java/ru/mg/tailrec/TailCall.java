@@ -25,6 +25,14 @@ public interface TailCall<T> {
                 .result();
     }
 
+    default T invokeWhile() {
+        TailCall<T> call = this.apply();
+        while (!call.isComplete()) {
+            call = call.apply();
+        }
+        return call.result();
+    }
+
     static <T> TailCall<T> done(final T value) {
         return new TailCall<T>() {
             @Override

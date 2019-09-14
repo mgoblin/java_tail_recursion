@@ -50,7 +50,7 @@ class TailCallTest {
     }
 
     private <E> long length(Collection<E> list) {
-        return lengthLoopTailRec(list, 0).invoke();
+        return lengthLoopTailRec(list, 0).invokeWhile();
     }
 
     private <E> long lengthNaive(Collection<E> list) {
