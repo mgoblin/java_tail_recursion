@@ -9,14 +9,14 @@ public class FunctionalUtils {
 
     public static  <E> E head(Collection<E> collection) {
         if (Objects.requireNonNull(collection).isEmpty()) {
-            throw new IllegalArgumentException("empty doesn't have head");
+            throw new NoSuchElementException("empty doesn't have head");
         }
         return collection.iterator().next();
     }
 
-    public static <E> List<E> tail(List<E> list) {
+    public static <E> Collection<E> tail(Collection<E> list) {
         if (Objects.requireNonNull(list).isEmpty()) {
-            throw new IllegalArgumentException("empty doesn't have tail");
+            throw new NoSuchElementException("empty doesn't have tail");
         } else if (list.size() == 1){
             return new ArrayList<>();
         } else {

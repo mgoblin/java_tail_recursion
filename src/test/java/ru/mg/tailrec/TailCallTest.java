@@ -2,11 +2,11 @@ package ru.mg.tailrec;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -33,7 +33,7 @@ class TailCallTest {
 
     }
 
-    private <E> TailCall<Long> lengthLoopTailRec(List<E> list, long acc) {
+    private <E> TailCall<Long> lengthLoopTailRec(Collection<E> list, long acc) {
         if (list.isEmpty()) {
             return done(acc);
         } else {
@@ -41,7 +41,7 @@ class TailCallTest {
         }
     }
 
-    private <E> Long lengthLoopNaive(List<E> list, long acc) {
+    private <E> Long lengthLoopNaive(Collection<E> list, long acc) {
         if (list.isEmpty()) {
             return acc;
         } else {
@@ -49,11 +49,11 @@ class TailCallTest {
         }
     }
 
-    private <E> long length(List<E> list) {
+    private <E> long length(Collection<E> list) {
         return lengthLoopTailRec(list, 0).invoke();
     }
 
-    private <E> long lengthNaive(List<E> list) {
+    private <E> long lengthNaive(Collection<E> list) {
         return lengthLoopNaive(list, 0);
     }
 
@@ -65,7 +65,7 @@ class TailCallTest {
 
     @Test
     void testInvokeRecursive() {
-        List<Integer> ints = IntStream.range(0, 15_000).boxed().collect(Collectors.toList());
+        Collection<Integer> ints = IntStream.range(0, 15_000).boxed().collect(Collectors.toList());
         assertThat(length(ints), is(15_000L));
 
         assertThrows(StackOverflowError.class, () -> lengthNaive(ints));
