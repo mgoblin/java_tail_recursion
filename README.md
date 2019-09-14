@@ -73,7 +73,7 @@ private <E> TailCall<Long> lengthLoopTailRec(Collection<E> list, long acc) {
    }
 }
 
-private <E> long length(Collection<E> list) {
+<E> long length(Collection<E> list) {
    return lengthLoopTailRec(list, 0).invokeWhile(); //<-- start to sequentially calling deferred lambdas
 }
 ```
