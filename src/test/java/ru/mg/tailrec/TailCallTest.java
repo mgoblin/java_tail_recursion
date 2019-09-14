@@ -3,7 +3,6 @@ package ru.mg.tailrec;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
