@@ -56,5 +56,11 @@ The reason of StackOverflowException is immediate
 calling lengthLoopNaive leading to allocation of 
 stack frame.
 
+The idea is, instead of immediately calling a function in recursive position, 
+return as a result deferred call in the form of a lambda.
+Also we need to have a trailing marker for recursion breakdown 
+ and the method to sequentially call lambda until
+trailing marker.
+Sequential calling transform recursion to iteration.
 
 
