@@ -30,7 +30,7 @@ public interface TailCall<T> {
      * @return throw Error for not trailing call else return the result of computation
      */
     default T result() {
-        throw new Error("not implemented");
+        throw new Error("Calling result for non trailing recursive call");
     }
 
     /**
@@ -68,10 +68,15 @@ public interface TailCall<T> {
      *
      * @param value result of trailing recursive call
      * @param <T> type of result
-     * @return trailing recursive call with result.
+     * @return trailing recursive call with final result of recursion.
      */
     static <T> TailCall<T> done(final T value) {
         return new TailCall<T>() {
+            /**
+             * The trailing call is complete
+             *
+             * @return true
+             */
             @Override
             public boolean isComplete() {
                 return true;
@@ -82,9 +87,14 @@ public interface TailCall<T> {
                 return value;
             }
 
+            /**
+             * Trailing call should not generate next recursion.
+             *
+             * @return exception
+             */
             @Override
             public TailCall<T> apply() {
-                throw new Error("not implemented");
+                throw new Error("Calling apply for trailing recursive call");
             }
         };
     }
