@@ -79,5 +79,19 @@ private <E> TailCall<Long> lengthLoopTailRec(Collection<E> list, long acc) {
 ```
 
 ## TailCall details
+TailCall is a functional interface for recursive call 
+It have abstract method apply().
+Recursive algorithm implementers should replace non trailing recursive calls
+from f(...) to () -> f(...)
+
+isComplete function returns trailing call flag. 
+By default TailCall is not trailing and its isComplete returns false.
+
+result function return final result of recursive call.
+By default TailCall is not trailing and result throw exception because 
+not trailing call not last call in recursion sequence and doesn't have
+final result.  
+
+
 
 
