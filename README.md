@@ -35,7 +35,7 @@ optimization.
 ## Idea
 Сonsider the naive recursive implementation of the method 
 length.
-```
+```java
 private <E> Long lengthLoopNaive(Collection<E> list, long acc) {
   if (list.isEmpty()) {
     return acc;
@@ -64,7 +64,7 @@ trailing marker.
 Sequential invoke all deferred calls should transform recursion to iteration.
 
 Length calculation may be rewrited as 
-```
+```java
 private <E> TailCall<Long> lengthLoopTailRec(Collection<E> list, long acc) {
    if (list.isEmpty()) {
      return done(acc); //<-- done is recursion trailing marker
@@ -95,6 +95,14 @@ final result.
 The trailing recursive call is making by function done(T value). It returns
 the TailCall instance with isComplete = true and final result of recursion
 computation, method apply throws exception.
+
+## How to use it
+The first is imports. 
+```java
+import ru.mg.tailrec.TailCall;
+import static u.mg.tailrec.TailCall.done;
+```
+
 
 
 
