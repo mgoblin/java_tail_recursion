@@ -96,6 +96,11 @@ The trailing recursive call is making by function done(T value). It returns
 the TailCall instance with isComplete = true and final result of recursion
 computation, method apply throws exception.
 
+TailCall have to methods to run computation: invoke() and invokeWhile().
+The difference is in implementation details. 
+Method invoke() use java streams and invokeWhile() use while statement for computation.
+
+
 ## How to use it
 If you have tail recursive function naive implementation and want to use tail call optimization:
 
@@ -110,9 +115,12 @@ where E is a function raw return type.
 
 Next replace all not tailing calls by lambda. For example if your tail recursion function named
 func you should replace non trailing calls of func(<args>) to () -> func(<args>).
+Replace trailing calls result by done(result) where done is a TailCall.done method.
 
-And the last step is to replace trailing calls result by done(result) 
-where done is a TailCall.done method.
+The last step is to replace function usage call to invoke() or invokeWhile(). 
+
+# Implementation overhead
+
 
 
 
