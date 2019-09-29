@@ -97,11 +97,23 @@ the TailCall instance with isComplete = true and final result of recursion
 computation, method apply throws exception.
 
 ## How to use it
-The first is imports. 
+If you have tail recursive function naive implementation and want to use tail call optimization:
+
+
+The first step is imports. 
 ```java
 import ru.mg.tailrec.TailCall;
 import static u.mg.tailrec.TailCall.done;
 ```
+The second step is to replace function return type to TailCall<E> 
+where E is a function raw return type.
+
+Next replace all not tailing calls by lambda. For example if your tail recursion function named
+func you should replace non trailing calls of func(<args>) to () -> func(<args>).
+
+And the last step is to replace trailing calls result by done(result) 
+where done is a TailCall.done method.
+
 
 
 
