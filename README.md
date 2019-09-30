@@ -120,8 +120,18 @@ Replace trailing calls result by done(result) where done is a TailCall.done meth
 The last step is to replace function usage call to invoke() or invokeWhile(). 
 
 # Implementation overhead
+Iterative algorithm should be used as a reference point to evaluate tail recursive algorithm 
+overhead.
 
+TailCall implementation allocate memory on each call iteration for TailCall instance. 
+TailCall does not have any instance fields. Memory overhead is only on allocate reference of
+TailCall. TailCall instance memory allocation generate pressure to GC.
 
+Next source of overhead are calls of TailCall methods. 
+
+The recommendation is not to use this tail call optimization implementation on 
+algorithms with extreme requirements to memory footprint and performance. 
+Rewrite it to iteration form.
 
 
 
